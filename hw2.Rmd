@@ -2,7 +2,7 @@
 title: "p8105_hw2_yc3729"
 author: "Yineng Chen"
 date: "2019/9/29"
-output: github_document
+output: html_document
 ---
 # Question1
 
@@ -42,7 +42,7 @@ precip1718_data = rbind(precip2017_data,precip2018_data) %>%
 ```
 
 # Question 2
-```{r}
+```{r clean}
 pols_data = read_csv("./data/pols-month.csv",col_types = "ciiiiiiii" ) %>% 
   janitor::clean_names() %>% 
   separate(mon, into = c("year", "month","date")) %>% 
@@ -50,5 +50,36 @@ pols_data = read_csv("./data/pols-month.csv",col_types = "ciiiiiiii" ) %>%
   mutate(month = month.name[month]) %>% 
   mutate(president = ifelse(prez_dem == 1, "dem","gop")) %>% 
   select(-prez_dem,-prez_gop,-date)
+
+snp_data = read_csv("./data/snp.csv",col_types = "cd")%>% 
+  janitor::clean_names() %>% 
+  separate(date, into = c("month", "date","year")) %>% 
+  mutate(month = as.integer(month)) %>% 
+  mutate(month = month.name[month]) %>% 
+  select(year,month,everything()) %>% 
+  arrange(year)
+
+unemploy_data = read_csv("./data/unemployment.csv",col_types = "cdddddddddddd") %>% 
+  janitor::clean_names()%>% 
+  rename(January = jan, February = feb, March = mar, April = apr, May = may, June = jun, July = jul, August = aug, September = sep, October = oct, November = nov, December = dec) %>% 
+  pivot_longer(January:December,
+               names_to = "month",
+               values_to = "unemployment" )
+
+join_data1 = 
+  left_join(pols_data, snp_data, by = c("year","month"))
+
+join_data2 = 
+  left_join(join_data1, unemploy_data, by = c("year","month"))
+```
+
+# question 3
+```{r}
+name_data = read_csv("./data/Popular_Baby_Names.csv",col_types = "ccccii") %>% 
+  janitor::clean_names() %>% 
+  mutate(gender = tolower(gender), ethnicity = tolower(ethnicity), childs_first_name = tolower(childs_first_name)) %>% 
+ distinct()
+  
+
 ```
 
