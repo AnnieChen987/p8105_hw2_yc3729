@@ -4,6 +4,7 @@ author: "Yineng Chen"
 date: "2019/9/29"
 output: github_document
 ---
+# Question1
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -38,5 +39,16 @@ precip2018_data = read_excel("./data/HealthyHarborWaterWheelTotals2018-7-28.xlsx
 
 precip1718_data = rbind(precip2017_data,precip2018_data) %>% 
   mutate(month = month.name[month])
+```
+
+# Question 2
+```{r}
+pols_data = read_csv("./data/pols-month.csv",col_types = "ciiiiiiii" ) %>% 
+  janitor::clean_names() %>% 
+  separate(mon, into = c("year", "month","date")) %>% 
+  mutate(month = as.integer(month)) %>% 
+  mutate(month = month.name[month]) %>% 
+  mutate(president = ifelse(prez_dem == 1, "dem","gop")) %>% 
+  select(-prez_dem,-prez_gop,-date)
 ```
 
