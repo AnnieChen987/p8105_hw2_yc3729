@@ -1,0 +1,23 @@
+---
+title: "p8105_hw2_yc3729"
+author: "Yineng Chen"
+date: "2019/9/29"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(readxl)
+```
+
+```{r import data}
+mrtw_data = read_excel("./data/HealthyHarborWaterWheelTotals2018-7-28.xlsx",
+                  sheet = 1,
+                  range = "A2:N338") %>% 
+  janitor::clean_names() %>% 
+  drop_na(dumpster)
+
+```
+
