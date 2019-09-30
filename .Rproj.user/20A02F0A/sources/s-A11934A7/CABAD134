@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1569801857416.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "262048872",
+    "id" : "CABAD134",
+    "lastKnownWriteTime" : 1569763794,
+    "last_content_update" : 1569763794,
+    "path" : "E:/我写的R/Data Science/Data_Wrangling/data_wrangling_i/data_manipulation_from_jeff.Rmd",
+    "project_path" : null,
+    "properties" : {
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

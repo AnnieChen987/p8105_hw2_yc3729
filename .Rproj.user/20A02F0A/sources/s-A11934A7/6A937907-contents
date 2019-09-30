@@ -1,0 +1,14 @@
+---
+title: "p8105_hw2_yc3729"
+author: "Yineng Chen"
+date: "2019/9/29"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(readxl)
+```
+
